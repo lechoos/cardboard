@@ -42,7 +42,9 @@ export const Card = (props: CardProps) => {
         {props.createdAt ? formatDate(props.createdAt) : 'Date'}
       </p>
       {!isEditing ? (
-        <p>{props?.content || 'Click to start noting'}</p>
+        <p className={styles.content}>
+          {props?.content || 'Click to start noting'}
+        </p>
       ) : (
         <CardContentForm
           initialValues={props}
