@@ -100,6 +100,7 @@ export const Card = (props: CardProps) => {
 
   return (
     <div
+      data-testid='card'
       data-cy={`card-${props.id}`}
       className={styles.card}
       onClick={handleSetEditingOn}
