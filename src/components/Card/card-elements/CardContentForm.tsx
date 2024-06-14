@@ -24,7 +24,7 @@ export const CardContentForm = (props: CardContentFormProps) => {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} data-testid='card-edit-form'>
       <textarea
         className={styles.textarea}
         autoFocus
