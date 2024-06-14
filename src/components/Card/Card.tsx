@@ -47,28 +47,28 @@ export const Card = (props: CardProps) => {
         setFontSize((prevFontSize) => {
           let newSize = prevFontSize
 
-          let adjusted = false;
+          let adjusted = false
 
           while (newSize < 16) {
-            newSize += 2;
+            newSize += 2
             if (contentRef.current) {
-              contentRef.current.style.fontSize = `${newSize}px`;
-              const { top, bottom } = contentRef.current.getBoundingClientRect();
-              const newContentHeight = bottom - top;
+              contentRef.current.style.fontSize = `${newSize}px`
+              const { top, bottom } = contentRef.current.getBoundingClientRect()
+              const newContentHeight = bottom - top
 
               if (newContentHeight > availableSpace) {
-                contentRef.current.style.fontSize = `${newSize - 2}px`;
-                adjusted = true;
-                newSize -= 2;
-                break;
+                contentRef.current.style.fontSize = `${newSize - 2}px`
+                adjusted = true
+                newSize -= 2
+                break
               }
             } else {
-              break;
+              break
             }
           }
 
           if (!adjusted) {
-            return newSize;
+            return newSize
           }
 
           return prevFontSize
@@ -77,14 +77,13 @@ export const Card = (props: CardProps) => {
     }
   }
 
+  const handleSaveContent = (values: CardModelData) => {
+    props.onUpdateCard && props.onUpdateCard(values)
+    handleSetEditingOff()
+    adjustFontSize()
+  }
+
   useEffect(() => {
-    let initialRender = true
-
-    if (initialRender) {
-      initialRender = false
-      return
-    }
-
     adjustFontSize()
   }, [])
 
@@ -92,21 +91,15 @@ export const Card = (props: CardProps) => {
     adjustFontSize()
   }, [props.content])
 
-  const handleSaveContent = (values: CardModelData) => {
-    props.onUpdateCard && props.onUpdateCard(values)
-    handleSetEditingOff()
-    adjustFontSize()
-  }
-
   return (
     <div
-      data-testid='card'
+      data-testid="card"
       data-cy={`card-${props.id}`}
       className={styles.card}
       onClick={handleSetEditingOn}
       ref={cardRef}
     >
-      <p ref={dateRef} className={styles.date} data-testid='card-date'>
+      <p ref={dateRef} className={styles.date} data-testid="card-date">
         {props.createdAt ? formatDate(props.createdAt) : 'Date'}
       </p>
       {!isEditing ? (
