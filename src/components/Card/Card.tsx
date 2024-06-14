@@ -105,7 +105,7 @@ export const Card = (props: CardProps) => {
       onClick={handleSetEditingOn}
       ref={cardRef}
     >
-      <p ref={dateRef} className={styles.date}>
+      <p ref={dateRef} className={styles.date} data-testid='card-date'>
         {props.createdAt ? formatDate(props.createdAt) : 'Date'}
       </p>
       {!isEditing ? (
